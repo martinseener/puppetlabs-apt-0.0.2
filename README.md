@@ -13,11 +13,14 @@ apt::builddep { "glusterfs-server": }
 
 ### apt::force
 Force a package to be installed from a specific release.  Useful when using repositories like Debian unstable in Ubuntu.
+The cfg_files parameter controls wether newer or older configuration files should be used or only unchanged configuration files should be updated. Cfg_missing forces the provider to install all missing configuration files. Both are optional.
 <pre>
 apt::force { "glusterfs-server":
-	release => "unstable",
-	version => '3.0.3',
-	require => Apt::Source["debian_unstable"],
+	release      => "unstable",
+	version      => '3.0.3',
+  cfg_files    => 'unchanged',
+  cfg_missing  => true,
+	require      => Apt::Source["debian_unstable"],
 }
 </pre>
 
